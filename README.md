@@ -79,7 +79,7 @@ Connect the four 50kg load cells in a Wheatstone bridge configuration to the NAU
    ```yaml
    # Include the beehive monitoring package
    packages:
-     beehive: github://johnf/esp32-beehive/beehive-monitor.yaml
+     beehive: github://johnf/esphome-beehive/beehive-monitor.yaml
 
    # Device configuration (required)
    esphome:
