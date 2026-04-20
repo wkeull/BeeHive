@@ -55,5 +55,5 @@ async def to_code(config):
     esp32.add_idf_component(
         name="esp-dsp",
         repo="https://github.com/espressif/esp-dsp.git",
-        ref="v1.4.0",
+        ref="v1.8.1",
     )
