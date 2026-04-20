@@ -15,9 +15,9 @@ substitutions:
   # I2S pins for INMP441 microphone
   i2s_lrclk_pin: GPIO1
   i2s_bclk_pin: GPIO3
-  i2s_din_pin: GPIO7
+  i2s_din_pin: GPIO32
   # GPIO pin to prevent deep sleep when held high at boot
-  prevent_sleep_pin: GPIO11
+  prevent_sleep_pin: GPIO33
   # Weight calibration points (raw_value -> weight_kg)
   # Record raw values at known weights and update these
   weight_cal_raw_1: "-242624"
@@ -42,7 +42,7 @@ esphome:
       - script.execute: collect_and_sleep
 
 external_components:
-  - source: github://johnf/esphome-beehive
+  - source: github://wkeull/BeeHive
     components: [bee_audio]
     refresh: 0s
 
@@ -184,25 +184,29 @@ script:
   - id: collect_and_sleep
     then:
       - logger.log: "Starting measurement cycle"
-      - wait_until:
-          condition:
-            wifi.connected:
-          timeout: 10s
-      - component.update: bee_monitor
-      - component.update: hive_weight
-      - component.update: hive_climate
-      - wait_until:
-          condition:
-            api.connected:
-          timeout: 10s
+      - logger.log: bee_monitor
+      #- logger.log: hive_weight
+      - logger.log: hive_climate
+
+      #- wait_until:
+      #   condition:
+      #      wifi.connected:
+      #    timeout: 10s
+      #- component.update: bee_monitor
+      #- component.update: hive_weight
+      #- component.update: hive_climate
+      #- wait_until:
+      #    condition:
+      #      api.connected:
+      #    timeout: 10s
       - delay: 300ms
-      - if:
-          condition:
-            switch.is_on: prevent_deep_sleep
-          then:
-            - logger.log: "Deep sleep prevented - staying awake"
-            - delay: 5min
-            - script.execute: collect_and_sleep
-          else:
-            - logger.log: "BeeHive: Entering deep sleep"
-            - deep_sleep.enter: deep_sleep_control
+      #- if:
+      #    condition:
+      #      switch.is_on: prevent_deep_sleep
+      #    then:
+      #      - logger.log: "Deep sleep prevented - staying awake"
+       #     - delay: 5min
+       #     - script.execute: collect_and_sleep
+       #   else:
+       #     - logger.log: "BeeHive: Entering deep sleep"
+       #     - deep_sleep.enter: deep_sleep_control
