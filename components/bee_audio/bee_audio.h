@@ -1,9 +1,9 @@
 #pragma once
 
-#include "BeeHive/components/binary_sensor/binary_sensor.h"
-#include "BeeHive/components/sensor/sensor.h"
-#include "BeeHive/components/text_sensor/text_sensor.h"
-#include "BeeHive/core/component.h"
+#include "esphome/components/binary_sensor/binary_sensor.h"
+#include "esphome/components/sensor/sensor.h"
+#include "esphome/components/text_sensor/text_sensor.h"
+#include "esphome/core/component.h"
 
 #include <driver/i2s_std.h>
 #include "dsps_fft2r.h"
