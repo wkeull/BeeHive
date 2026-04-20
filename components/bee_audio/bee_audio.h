@@ -5,7 +5,7 @@
 #include "esphome/components/text_sensor/text_sensor.h"
 #include "esphome/core/component.h"
 
-#include "driver/i2s_std.h"
+#include <driver/i2s_std.h>
 #include "dsps_fft2r.h"
 #include "dsps_wind_hann.h"
 #include "esp_heap_caps.h"
